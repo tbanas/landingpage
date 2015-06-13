@@ -1,5 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Homepage.
+	{% if header is not empty %}
+		<h1>{{ header|raw }}</h1>
+	{% endif %}
+
+	{% block messages %}
+		{% for flashMessage in app.session.flashbag.get('message') %}
+			<div class="alert alert-success">
+				{{ flashMessage }}
+			</div>
+		{% endfor %}
+
+		{% for flashMessage in app.session.flashbag.get('alert') %}
+			<div class="alert alert-danger">
+				{{ flashMessage }}
+			</div>
+		{% endfor %}
+	{% endblock %}
+	{% block content %}
+	{% endblock %}
 {% endblock %}
