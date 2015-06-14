@@ -72,4 +72,9 @@ class Newsletter
 		$this->registeredAt = $registeredAt;
 	}
 
+	public function __toString() {
+		return $this->email;
+	}
+
+	
 }

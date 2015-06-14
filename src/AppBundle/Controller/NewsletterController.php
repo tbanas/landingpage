@@ -22,7 +22,12 @@ class NewsletterController extends Controller {
 	 * @Template()
 	 */
 	public function indexAction() {
-		return array();
+		$em = $this->getDoctrine()->getManager();
+		$entities = $em->getRepository('AppBundle:Newsletter')->findAll();
+		
+		return array(
+			'entities' => $entities
+		);
 	}
 
 	/**
@@ -37,30 +42,30 @@ class NewsletterController extends Controller {
 
 		if ($form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
-			
+
 			$exists = false;
-			
+
 			$newsletter = $em->getRepository('AppBundle:Newsletter')->findOneByEmail($form['email']->getData());
-			
-			if($newsletter){
+
+			if ($newsletter) {
 				$exists = true;
 			}
-			
+
 			$clientIp = $request->getClientIp();
 			$existingIp = $em->getRepository('AppBundle:Newsletter')->findOneByIp($clientIp);
 
 			if ($existingIp) {
 				$exists = true;
 			}
-			
-			if(!$exists){
+
+			if (!$exists) {
 				$entity->setIp($clientIp);
 				$entity->setRegisteredAt(new DateTime('NOW'));
 				$em->persist($entity);
 				$em->flush();
-				
+
 				$request->getSession()->getFlashBag()->add('message', "Email został dodany do listy mailingowej.");
-				
+
 				return $this->redirect($this->generateUrl('newsletter'));
 			} else {
 				$request->getSession()->getFlashBag()->add('alert', "Podany użytkownik został już dodany.");
@@ -74,12 +79,9 @@ class NewsletterController extends Controller {
 	}
 
 	private function createCreateForm(Newsletter $entity) {
-		$form = $this->createForm(new NewsletterType(), $entity, array(
-			'action' => $this->generateUrl('newsletter_create'),
-			'method' => 'POST'
-		));
+		$form = $this->get('create_create_form')->createCreateForm($entity);
 
-		$form->add('submit', 'submit', array('label' => 'Dodaj'));
+		$form->add('submit', 'submit', array('label' => 'Zapisz się'));
 
 		return $form;
 	}

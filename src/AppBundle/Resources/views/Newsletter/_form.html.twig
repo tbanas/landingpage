@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+{% if email_label is defined %}
+	{{ form_row(form.email, {'label': email_label}) }}
+{% else %}
+	{{ form_row(form.email) }}
+{% endif %}
+{{ form_end(form) }}

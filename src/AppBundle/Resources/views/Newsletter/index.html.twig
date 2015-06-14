@@ -1,5 +1,9 @@
 {% extends 'default/index.html.twig' %}
 
 {% block content %}
-    
+	<ol>
+		{% for entity in entities %}
+			<li>{{ entity }}</li>
+		{% endfor %}
+	</ol>
 {% endblock %}

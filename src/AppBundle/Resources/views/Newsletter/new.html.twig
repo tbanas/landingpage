@@ -1,7 +1,5 @@
 {% extends 'default/index.html.twig' %}
 
-{% set _header = 'Dodaj adres email' %}
-
 {% block content %}
-	{{ form(form) }}
+	{% include 'AppBundle:Newsletter:_form.html.twig' with {'form': form, 'email_label': 'Adres email'} only %}
 {% endblock %}

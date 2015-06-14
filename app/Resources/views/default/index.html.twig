@@ -1,8 +1,112 @@
 {% extends 'base.html.twig' %}
 
+{% if show_nav is not defined %}
+	{% set show_nav = true %}
+{% endif %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	{% if carousel is defined %}
+		<link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
+	{% endif %}
+	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+{% endblock %}
+
 {% block body %}
-	{% if header is not empty %}
-		<h1>{{ header|raw }}</h1>
+	{% if show_nav %}
+		<div class="navbar-wrapper">
+			{% if carousel is defined %}
+				<div class="container">
+				{% endif %}
+
+				<nav class="navbar navbar-inverse navbar-static-top">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"><img src="{{ asset('img/logo-mini.png') }}" style="max-width:100px; margin-top: -15px;" /></a>
+						</div>
+						<div id="navbar" class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="#">Home</a></li>
+								<li><a href="#about">About</a></li>
+								<li><a href="#contact">Contact</a></li>
+							</ul>
+							{% if app.user %}
+								<ul class="nav navbar-nav pull-right">
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user }} <span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="{{ path('newsletter') }}">Newsletter</a></li>
+											<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+										</ul>
+									</li>
+								</ul>
+							{% endif %}
+						</div>
+					</div>
+				</nav>
+				{% if carousel is defined %}
+				</div>
+			{% endif %}	
+		</div>
+	{% endif %}
+
+	{% if carousel is defined %}
+		<!-- Carousel
+================================================== -->
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img class="first-slide" src="{{ asset('bundles/app/img/slide1.jpg') }}" alt="First slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>Example headline.</h1>
+							<p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+							{% include 'AppBundle:Newsletter:_form.html.twig' with {'form': form} only %}
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>Another example headline.</h1>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+							<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>One more for good measure.</h1>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+							<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div><!-- /.carousel -->
 	{% endif %}
 
 	{% block messages %}
@@ -18,6 +122,16 @@
 			</div>
 		{% endfor %}
 	{% endblock %}
-	{% block content %}
-	{% endblock %}
+	<div class="container">
+		{% block content %}
+		{% endblock %}
+	</div>
+{% endblock %}
+
+
+
+{% block javascripts %}
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ asset('js/jquery-1.11.1.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock %}

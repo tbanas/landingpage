@@ -14,8 +14,10 @@ class NewsletterType extends AbstractType {
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
-				->add('email')
-				->add('ip', 'hidden')
+			->add('email', null, array(
+				'label' => false
+			))
+			->add('ip', 'hidden')
 		;
 	}
 

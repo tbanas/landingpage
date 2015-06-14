@@ -1,0 +1,5 @@
+services:
+    create_create_form:
+        class: AppBundle\Utils\NewsletterFormHelper
+        arguments: [@form.factory, @router]
+        scope: request
