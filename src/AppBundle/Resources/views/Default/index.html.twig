@@ -3,22 +3,32 @@
 {% set carousel = true %}
 
 {% block content %}
+	<div id="fb-root"></div>
+	<script>(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.3&appId=421419654659067";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
     <div class="container marketing">
 
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			<div class="col-lg-4">
-				<img class="img-circle" src="{{ asset('bundles/app/img/header_sushi2.jpg') }}" alt="" width="140" height="140">
+				<img class="img-rounded" src="{{ asset('bundles/app/img/header_sushi2.jpg') }}" alt="" width="140" height="140">
 				<h2>Prostota</h2>
-				<p>Dopiero zaczynasz? Świetnie! Aplikacja Sushi.me w przyjemny sposób wprowadzi Cię do świata smaków, z którego już nie będziesz chciał opuścić.</p>
+				<p>Dopiero zaczynasz? Świetnie! Aplikacja Sushi.me w przyjemny sposób wprowadzi Cię do świata smaków, którego już nie będziesz chciał opuścić.</p>
 			</div><!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle" src="{{ asset('bundles/app/img/header_sushi1.jpg') }}" alt="" width="140" height="140">
+				<img class="img-rounded" src="{{ asset('bundles/app/img/header_sushi1.jpg') }}" alt="" width="140" height="140">
 				<h2>Dostępność</h2>
 				<p>Wizyty w restauracjach sushi jeszcze nigdy nie były tak proste! Dzięki aplikacji Sushi.me z łatwością odnajdziesz lokale polecane przez Twoich znajomych.</p>
 			</div><!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle" src="{{ asset('bundles/app/img/header_sushi3.jpg') }}" alt="" width="140" height="140">
+				<img class="img-rounded" src="{{ asset('bundles/app/img/header_sushi3.jpg') }}" alt="" width="140" height="140">
 				<h2>Wygoda</h2>
 				<p>Gromadzenie punktów lojalnościowych za wizyty w Twoich ulubionych restauracjach jeszcze nigdy nie były tak proste, jak z aplikacją Sushi.me</p>
 			</div><!-- /.col-lg-4 -->
@@ -27,7 +37,7 @@
 
 		<!-- START THE FEATURETTES -->
 
-		<hr class="featurette-divider">
+		<a name="about"><hr class="featurette-divider"></a>
 
 		<div class="row featurette">
 			<div class="col-md-7 col-md-push-5">
@@ -46,8 +56,8 @@
 				<h2 class="featurette-heading">Program lojalnościowy <span class="text-muted">naprawdę się opłaca</span></h2>
 				<p class="lead">Darmowe zestawy, zniżki czy promocje to tylko część korzyści, które zyskasz korzystając z aplikacji Sushi.me. Nie zwlekaj i od razu pobierz aplikację na swojego smartfona! Im szybicje zaczniesz zbierać punkty, tym szybciej zaczniesz czerpać korzyści!</p>
 				<p class="text-center voffset5">
-				<img src="{{ asset('bundles/app/img/app-store.png') }}" />
-				<img src="{{ asset('bundles/app/img/google-play.png') }}" />
+					<img src="{{ asset('bundles/app/img/app-store.png') }}" />
+					<img src="{{ asset('bundles/app/img/google-play.png') }}" />
 				</p>
 			</div>
 			<div class="col-md-5">
@@ -55,16 +65,66 @@
 			</div>
 		</div>
 
-		<hr class="featurette-divider">
+		<a name="contact"><hr class="featurette-divider"></a>
 
 		<!-- /END THE FEATURETTES -->
 
 
-		<!-- FOOTER -->
-		<footer>
-			<p class="pull-right"><a href="#">Back to top</a></p>
-			<p>&copy; 2015 Sushi.me, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-		</footer>
+		<h1>Kontakt</h1>
+		<div class="row">
+			<div class="col-sm-6">
+				<h3 class="text-center">Jakub Falkowski</h3>
+				<p class="text-center">
+					<img src="{{ asset('bundles/app/img/kuba.jpg') }}" class="img-circle" alt="" />
+				</p>
+				<p class="text-center">
+					email: falkosiq@gmail.com
+				</p>
+			</div>
+			<div class="col-sm-6">
+				<h3 class="text-center">Tomasz Banaś</h3>
+				<p class="text-center">
+					<img src="{{ asset('bundles/app/img/tomek.jpg') }}" class="img-circle" alt="" />
+				</p>
+				<p class="text-center">
+					email: tomek.kacper@gmail.com
+				</p>
+			</div>
+		</div>
 
-    </div>
+		<hr class="featurette-divider">
+
+		<h1>Społeczność</h1>
+		<div class="row voffset5">
+			<div class="col-sm-2 col-sm-offset-2">
+				<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="box_count"></div>
+			</div>
+
+			<div class="col-sm-2 col-sm-offset-2">
+				<script src="https://apis.google.com/js/platform.js" async defer>
+		{
+			lang: 'pl'
+		}
+				</script>
+				<div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60"></div>
+			</div>
+
+			<div class="col-sm-2 col-sm-offset-2">
+				<a class="twitter-share-button"
+				   href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button%3Fsrc%3Dtwitter"
+				   data-counturl="https://dev.twitter.com/web/tweet-button" data-count="vertical">
+					Tweet</a>
+			</div>
+		</div>
+	</div>
+
+	<hr class="featurette-divider">
+
+	<!-- FOOTER -->
+	<footer>
+		<p class="pull-right"><a href="#">Do góry</a></p>
+		<p>&copy; 2015 Sushi.me, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+	</footer>
+
+</div>
 {% endblock %}
